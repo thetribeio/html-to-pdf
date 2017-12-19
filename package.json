@@ -1,0 +1,12 @@
+{
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.2",
+    "puppeteer": "^0.13.0",
+    "uuid": "^3.1.0"
+  },
+  "scripts": {
+    "start": "node --experimental-modules src"
+  }
+}
