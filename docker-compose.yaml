@@ -1,0 +1,7 @@
+version: '2.4'
+
+services:
+    html-to-pdf:
+        build: .
+        ports:
+            - 3000:3000

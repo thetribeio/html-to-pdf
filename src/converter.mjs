@@ -1,5 +1,4 @@
 import fs from 'fs';
-import util from 'util';
 
 import puppeteer from 'puppeteer';
 import uuid from 'uuid';
@@ -11,10 +10,10 @@ const pipe = (source, destination) => new Promise((resolve, reject) => {
     source.on('error', reject);
 });
 
-const unlink = util.promisify(fs.unlink);
-
 const createConverter = async () => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        args: ['--no-sandbox'],
+    });
 
     return {
         async htmToPdf(stream) {
@@ -31,7 +30,7 @@ const createConverter = async () => {
 
             await page.close();
 
-            await unlink(path);
+            await fs.promises.unlink(path);
 
             return pdf;
         }

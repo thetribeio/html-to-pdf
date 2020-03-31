@@ -1,10 +1,10 @@
 import express from 'express';
 
-import createConverter from './converter';
+import createConverter from './converter.mjs';
 
 (async () => {
     const converter = await createConverter();
-    
+
     const app = express();
 
     app.post('/', async (req, res, next) => {
