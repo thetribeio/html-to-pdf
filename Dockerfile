@@ -12,6 +12,7 @@ RUN yarn install --production --frozen-lockfile
 FROM node:12.16.1-slim
 
 # Install chromium runtime dependencies
+# hadolint ignore=DL3008
 RUN apt-get update && apt-get install --yes --no-install-recommends \
         gconf-service \
         libasound2 \

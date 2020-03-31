@@ -1,0 +1,50 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@1.0.0
+
+jobs:
+  yarn-install:
+    docker:
+      - image:  circleci/node:12.16.1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-install-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+            - yarn-install-{{ checksum "package.json" }}
+            - yarn-install
+          paths:
+            - node_modules
+      - run:
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: yarn-install-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - node_modules
+
+  lint-js:
+    docker:
+      - image: circleci/node:12.16.1
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - run: yarn lint:js
+
+workflows:
+  version: 2
+
+  build:
+    jobs:
+      - yarn-install
+      - docker/hadolint:
+          name: lint-docker
+          dockerfiles: Dockerfile
+      - lint-js:
+          requires:
+            - yarn-install

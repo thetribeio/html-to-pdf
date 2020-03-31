@@ -6,7 +6,13 @@
     "puppeteer": "^2.1.1",
     "uuid": "^7.0.2"
   },
+  "devDependencies": {
+    "@thetribe/eslint-config": "^0.4.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.2"
+  },
   "scripts": {
+    "lint:js": "eslint --ext mjs src",
     "start": "node --experimental-modules src"
   }
 }
