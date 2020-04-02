@@ -1,0 +1,9 @@
+{
+    "root": true,
+    "extends": "@thetribe",
+    "rules": {
+        "import/extensions": ["error", {
+            "mjs": "always"
+        }]
+    }
+}

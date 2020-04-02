@@ -18,7 +18,7 @@ const createConverter = async () => {
     return {
         async htmToPdf(stream) {
             const id = uuid.v4();
-            const path = `/tmp/${id}.html`
+            const path = `/tmp/${id}.html`;
 
             await pipe(stream, fs.createWriteStream(path));
 
@@ -33,8 +33,8 @@ const createConverter = async () => {
             await fs.promises.unlink(path);
 
             return pdf;
-        }
+        },
     };
-}
+};
 
 export default createConverter;
