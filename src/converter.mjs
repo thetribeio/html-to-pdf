@@ -26,7 +26,10 @@ const createConverter = async () => {
 
             await page.goto(`file://${path}`);
 
-            const pdf = await page.pdf({ format: 'A4' });
+            const pdf = await page.pdf({
+                format: 'A4',
+                printBackground: true,
+            });
 
             await page.close();
 
