@@ -1,18 +1,26 @@
 {
   "license": "UNLICENSED",
   "private": true,
+  "type": "module",
   "dependencies": {
     "express": "^4.17.1",
     "puppeteer": "^2.1.1",
     "uuid": "^7.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.0",
+    "@babel/plugin-syntax-top-level-await": "^7.8.3",
     "@thetribe/eslint-config": "^0.4.1",
+    "babel-eslint": "^11.0.0-beta.2",
     "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.2"
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^26.0.1",
+    "node-fetch": "^2.6.0",
+    "pdfjs-dist": "^2.3.200"
   },
   "scripts": {
-    "lint:js": "eslint --ext mjs src",
-    "start": "node --experimental-modules src"
+    "lint:js": "eslint src",
+    "start": "node --experimental-top-level-await src",
+    "test": "jest"
   }
 }

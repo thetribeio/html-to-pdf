@@ -1,5 +1,5 @@
 ### node_modules
-FROM node:12.16.1-slim AS node_modules
+FROM node:14.3.0-slim AS node_modules
 
 RUN mkdir /opt/html-to-pdf && chown node:node /opt/html-to-pdf
 WORKDIR /opt/html-to-pdf
@@ -9,7 +9,7 @@ COPY package.json yarn.lock ./
 RUN yarn install --production --frozen-lockfile
 
 ### Final image
-FROM node:12.16.1-slim
+FROM node:14.3.0-slim
 
 # Install chromium runtime dependencies
 # hadolint ignore=DL3008
@@ -63,4 +63,4 @@ USER node
 COPY --from=node_modules /opt/html-to-pdf/node_modules/ node_modules/
 COPY src/ src/
 
-CMD ["--experimental-modules", "src/index.mjs"]
+CMD ["--experimental-top-level-await", "src/index.js"]
