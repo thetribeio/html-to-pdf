@@ -1,8 +1,10 @@
 const fetch = require('node-fetch');
 const pdf = require('pdfjs-dist');
 
+const BASE_URL = process.env.BASE_URL || `http://localhost:${process.env.PORT || 3000}`;
+
 test('It generates a PDF', async () => {
-    const response = await fetch('http://localhost:3000', {
+    const response = await fetch(BASE_URL, {
         method: 'POST',
         body: `
             <html>
