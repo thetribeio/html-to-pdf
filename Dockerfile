@@ -61,6 +61,7 @@ USER node
 
 # Copy files
 COPY --from=node_modules /opt/html-to-pdf/node_modules/ node_modules/
+COPY package.json package.json
 COPY src/ src/
 
 CMD ["--experimental-top-level-await", "src/index.js"]
