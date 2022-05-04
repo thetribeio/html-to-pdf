@@ -1,7 +1,6 @@
+import { randomUUID } from 'crypto';
 import fs from 'fs';
-
 import puppeteer from 'puppeteer';
-import uuid from 'uuid';
 
 const pipe = (source, destination) => new Promise((resolve, reject) => {
     source.pipe(destination);
@@ -15,7 +14,7 @@ const browser = await puppeteer.launch({
 });
 
 const convert = async (stream) => {
-    const id = uuid.v4();
+    const id = randomUUID();
     const path = `/tmp/${id}.html`;
 
     await pipe(stream, fs.createWriteStream(path));

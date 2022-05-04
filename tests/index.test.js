@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const pdf = require('pdfjs-dist');
+const pdf = require('pdfjs-dist/legacy/build/pdf.js');
 
 const BASE_URL = process.env.BASE_URL || `http://localhost:${process.env.PORT || 3000}`;
 
