@@ -19,7 +19,8 @@ const convert = async (stream) => {
 
     await pipe(stream, fs.createWriteStream(path));
 
-    const page = await browser.newPage();
+    const context = await browser.createIncognitoBrowserContext();
+    const page = await context.newPage();
 
     await page.goto(`file://${path}`);
 
@@ -29,6 +30,7 @@ const convert = async (stream) => {
     });
 
     await page.close();
+    await context.close();
 
     await fs.promises.unlink(path);
 
