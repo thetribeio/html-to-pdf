@@ -1,4 +1,4 @@
-# html-t-pdf
+# html-to-pdf
 this is a api that can be used to generate a pdf from a source file.
 
 ## how to use
